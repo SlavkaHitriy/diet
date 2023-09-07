@@ -22,4 +22,5 @@ export const head: DocumentHead = {
       content: "Qwik site description",
     },
   ],
+  
 };
