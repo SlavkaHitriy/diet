@@ -7,10 +7,10 @@ interface RequestResponse<T> {
     error?: AxiosError;
 }
 
-export const request = async <T>(
+export const request = async <T, U = {}>(
     url: string,
     method: string,
-    data: T,
+    data: U,
 ): Promise<RequestResponse<T>> => {
     try {
         const response = await axios({
