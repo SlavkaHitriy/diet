@@ -1,20 +1,14 @@
 import { $, component$, useSignal } from '@builder.io/qwik';
 import { SubmitHandler, useForm } from '@modular-forms/qwik';
-import { RegisterForm, useFormLoader } from '~/routes/auth/register';
-import { registerUser } from '~/api/auth/register';
+import { LoginForm, useFormLoader } from '~/routes/auth/login';
 import { loginUser } from '~/api/auth/login';
 
-
-type RegisterFormKeys = keyof RegisterForm;
-interface RegisterFormFields {
-    fieldName: RegisterFormKeys;
+type LoginFormKeys = keyof LoginForm;
+interface LoginFormFields {
+    fieldName: LoginFormKeys;
     type: 'text' | 'email' | 'password';
 }
-const formFields: RegisterFormFields[] = [
-    {
-        fieldName: 'name',
-        type: 'text',
-    },
+const formFields: LoginFormFields[] = [
     {
         fieldName: 'email',
         type: 'email',
@@ -23,36 +17,20 @@ const formFields: RegisterFormFields[] = [
         fieldName: 'password',
         type: 'password',
     },
-    {
-        fieldName: 'repeatPassword',
-        type: 'password',
-    },
 ];
 
 export default component$(() => {
-    const [registerForm, { Form, Field, FieldArray }] = useForm<RegisterForm>({
+    const [loginForm, { Form, Field, FieldArray }] = useForm<LoginForm>({
         loader: useFormLoader(),
     });
 
     const error = useSignal('');
 
-    const handleSubmit = $<SubmitHandler<RegisterForm>>(
+    const handleSubmit = $<SubmitHandler<LoginForm>>(
         async (values, event) => {
-            if (values.password === values.repeatPassword) {
-                const response = await registerUser(values);
-
-                if (response.isError) {
-                    error.value = response.error?.message ?? 'Error';
-                    return;
-                }
-                const loginResponse = await loginUser({email: values.email, password: values.password})
-                if (loginResponse.isError) {
-                    error.value = loginResponse.error?.message ?? 'Error';
-                    return;
-                }
-                localStorage.setItem("accessToken", loginResponse.data)
-            } else {
-                error.value = 'Паролі не співпадають';
+            const response = await loginUser(values);
+            if (response.isError) {
+                error.value = response.error?.message ?? 'Error';
             }
         },
     );
@@ -77,7 +55,7 @@ export default component$(() => {
                     }}
                 </Field>
             ))}
-            <button type="submit">Підвердити</button>
+            <button type="submit">Увійти</button>
             {error.value && <div>{error.value}</div>}
         </Form>
     );
