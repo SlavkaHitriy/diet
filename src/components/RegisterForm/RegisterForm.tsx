@@ -4,7 +4,6 @@ import { RegisterForm, useFormLoader } from '~/routes/auth/register';
 import { registerUser } from '~/api/auth/register';
 import { loginUser } from '~/api/auth/login';
 
-
 type RegisterFormKeys = keyof RegisterForm;
 interface RegisterFormFields {
     fieldName: RegisterFormKeys;
@@ -45,12 +44,21 @@ export default component$(() => {
                     error.value = response.error?.message ?? 'Error';
                     return;
                 }
-                const loginResponse = await loginUser({email: values.email, password: values.password})
+                const loginResponse = await loginUser({
+                    email: values.email,
+                    password: values.password,
+                });
                 if (loginResponse.isError) {
                     error.value = loginResponse.error?.message ?? 'Error';
                     return;
                 }
-                localStorage.setItem("accessToken", loginResponse.data)
+
+                if (loginResponse.data) {
+                    localStorage.setItem(
+                        'accessToken',
+                        loginResponse.data.accessToken,
+                    );
+                }
             } else {
                 error.value = 'Паролі не співпадають';
             }
