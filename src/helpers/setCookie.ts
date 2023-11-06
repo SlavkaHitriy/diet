@@ -5,7 +5,6 @@ import { CookieOptions } from '@builder.io/qwik-city';
 
 export function setCookie(name: string, value:string, options:CookieOptions = {}) {
     options = {
-      path: '/',
       ...options
     };
   

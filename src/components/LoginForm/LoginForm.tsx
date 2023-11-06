@@ -35,10 +35,10 @@ export default component$(() => {
                 return
             }
             if (response.data) {
-                setCookie(
-                    'accessToken',
-                    response.data.accessToken
-                );
+                // setCookie(
+                //     'accessToken',
+                //     response.data.accessToken
+                // );
             }
         }
     );
