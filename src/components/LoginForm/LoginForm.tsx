@@ -2,6 +2,7 @@ import { $, component$, useSignal } from '@builder.io/qwik';
 import { SubmitHandler, useForm } from '@modular-forms/qwik';
 import { LoginForm, useFormLoader } from '~/routes/auth/login';
 import { loginUser } from '~/api/auth/login';
+import { setCookie } from '~/helpers/setCookie';
 
 type LoginFormKeys = keyof LoginForm;
 interface LoginFormFields {
@@ -31,8 +32,15 @@ export default component$(() => {
             const response = await loginUser(values);
             if (response.isError) {
                 error.value = response.error?.message ?? 'Error';
+                return
             }
-        },
+            if (response.data) {
+                setCookie(
+                    'accessToken',
+                    response.data.accessToken
+                );
+            }
+        }
     );
 
     return (

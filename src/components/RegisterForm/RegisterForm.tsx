@@ -3,12 +3,15 @@ import { SubmitHandler, useForm } from '@modular-forms/qwik';
 import { RegisterForm, useFormLoader } from '~/routes/auth/register';
 import { registerUser } from '~/api/auth/register';
 import { loginUser } from '~/api/auth/login';
+import { setCookie } from '~/helpers/setCookie';
+
 
 type RegisterFormKeys = keyof RegisterForm;
 interface RegisterFormFields {
     fieldName: RegisterFormKeys;
     type: 'text' | 'email' | 'password';
 }
+
 const formFields: RegisterFormFields[] = [
     {
         fieldName: 'name',
@@ -54,9 +57,9 @@ export default component$(() => {
                 }
 
                 if (loginResponse.data) {
-                    localStorage.setItem(
+                    setCookie(
                         'accessToken',
-                        loginResponse.data.accessToken,
+                        loginResponse.data.accessToken
                     );
                 }
             } else {

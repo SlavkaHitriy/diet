@@ -3,6 +3,14 @@ import type { DocumentHead } from '@builder.io/qwik-city';
 import { routeLoader$ } from '@builder.io/qwik-city';
 import { type InitialValues, useForm } from '@modular-forms/qwik';
 import LoginForm from '~/components/LoginForm/LoginForm';
+import type { RequestHandler } from '@builder.io/qwik-city';
+
+export const onRequest: RequestHandler = async ({redirect, url, cookie}) => {
+    if(cookie.get('Refresh-Token')){
+      throw redirect(308, new URL('/auth/login/', url).toString());
+    }
+  };
+
 
 export type LoginForm = {
     email: string;
