@@ -1,14 +1,15 @@
 import { $, component$, useSignal } from '@builder.io/qwik';
 import { SubmitHandler, useForm } from '@modular-forms/qwik';
 import { RegisterForm, useFormLoader } from '~/routes/auth/register';
-import { registerUser } from '~/api/auth/register';
-import { loginUser } from '~/api/auth/login';
+import { useAuth } from '~/hooks/useAuth';
+import { api } from '~/api';
 
 type RegisterFormKeys = keyof RegisterForm;
 interface RegisterFormFields {
     fieldName: RegisterFormKeys;
     type: 'text' | 'email' | 'password';
 }
+
 const formFields: RegisterFormFields[] = [
     {
         fieldName: 'name',
@@ -29,41 +30,36 @@ const formFields: RegisterFormFields[] = [
 ];
 
 export default component$(() => {
+    const auth = useAuth();
     const [registerForm, { Form, Field, FieldArray }] = useForm<RegisterForm>({
         loader: useFormLoader(),
     });
 
     const error = useSignal('');
 
-    const handleSubmit = $<SubmitHandler<RegisterForm>>(
-        async (values, event) => {
-            if (values.password === values.repeatPassword) {
-                const response = await registerUser(values);
+    const handleSubmit = $<SubmitHandler<RegisterForm>>(async (values) => {
+        if (values.password === values.repeatPassword) {
+            const response = await api.registerUser(values);
 
-                if (response.isError) {
-                    error.value = response.error?.message ?? 'Error';
-                    return;
-                }
-                const loginResponse = await loginUser({
-                    email: values.email,
-                    password: values.password,
-                });
-                if (loginResponse.isError) {
-                    error.value = loginResponse.error?.message ?? 'Error';
-                    return;
-                }
-
-                if (loginResponse.data) {
-                    localStorage.setItem(
-                        'accessToken',
-                        loginResponse.data.accessToken,
-                    );
-                }
-            } else {
-                error.value = 'Паролі не співпадають';
+            console.log(response);
+            if (response.isError) {
+                error.value = response.error?.message ?? 'Error';
+                return;
             }
-        },
-    );
+
+            const loginResponse = await auth.loginUser({
+                email: values.email,
+                password: values.password,
+            });
+
+            if (loginResponse.isError) {
+                error.value = loginResponse.error?.message ?? 'Error';
+                return;
+            }
+        } else {
+            error.value = 'Паролі не співпадають';
+        }
+    });
 
     return (
         <Form onSubmit$={handleSubmit}>

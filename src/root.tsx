@@ -6,7 +6,7 @@ import {
 } from '@builder.io/qwik-city';
 import { RouterHead } from './components/router-head/router-head';
 import { Header } from './components/Header/Header';
-import './global.css';
+import './styles/global.scss';
 
 export default component$(() => {
     return (

@@ -1,7 +1,7 @@
-import { component$, useSignal } from '@builder.io/qwik';
+import { component$ } from '@builder.io/qwik';
 import type { DocumentHead } from '@builder.io/qwik-city';
 import { routeLoader$ } from '@builder.io/qwik-city';
-import { type InitialValues, useForm } from '@modular-forms/qwik';
+import { type InitialValues } from '@modular-forms/qwik';
 import RegisterForm from '~/components/RegisterForm/RegisterForm';
 
 export type RegisterForm = {
