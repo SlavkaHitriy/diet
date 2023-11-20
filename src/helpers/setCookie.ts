@@ -1,28 +1,33 @@
 import { CookieOptions } from '@builder.io/qwik-city';
 
-
-
-
-export function setCookie(name: string, value:string, options:CookieOptions = {}) {
+export function setCookie(
+    name: string,
+    value: string,
+    options: CookieOptions = {},
+) {
     options = {
-      ...options
+        path: '/',
+        ...options,
     };
-  
+
     if (options.expires instanceof Date) {
-      options.expires = options.expires.toUTCString();
+        options.expires = options.expires.toUTCString();
     }
-  
-    let updatedCookie = encodeURIComponent(name) + "=" + encodeURIComponent(value);
-  
+
+    let updatedCookie =
+        encodeURIComponent(name) + '=' + encodeURIComponent(value);
+
     for (let optionKey in options) {
-      updatedCookie += "; " + optionKey;
-      // @ts-ignore
-      let optionValue = options[optionKey] as string;
-      // @ts-ignore
-      if (optionValue !== true) {
-        updatedCookie += "=" + optionValue;
-      }
+        if (options.hasOwnProperty(optionKey)) {
+            updatedCookie += '; ' + optionKey;
+
+            // @ts-ignore
+            if (options[optionKey] !== true) {
+                // @ts-ignore
+                updatedCookie += '=' + options[optionKey];
+            }
+        }
     }
-  
+
     document.cookie = updatedCookie;
 }

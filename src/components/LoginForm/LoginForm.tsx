@@ -1,16 +1,19 @@
-import { $, component$, useSignal, FunctionComponent, JSXNode } from '@builder.io/qwik';
+import {
+    $,
+    component$,
+    FunctionComponent,
+    JSXNode,
+    useSignal,
+} from '@builder.io/qwik';
 import { SubmitHandler, useForm } from '@modular-forms/qwik';
 import { LoginForm, useFormLoader } from '~/routes/auth/login';
-import styles from './LoginForm.module.scss'
-import { loginUser } from '~/api/auth/login';
-import { setCookie } from '~/helpers/setCookie';
-import FormText from '../FormText'
+import styles from './LoginForm.module.scss';
+import FormText from '../FormText';
 import FormInput from '../FormInput';
-import AuthBG from '../../assets/auth-bg.jpg?jsx'
-import EmailIcon from '../../assets/icon/email.svg?jsx'
-import PassWordIcon from '../../assets/icon/PassWord.svg?jsx'
-
-
+import AuthBG from '../../assets/auth-bg.jpg?jsx';
+import EmailIcon from '../../assets/icon/email.svg?jsx';
+import PassWordIcon from '../../assets/icon/PassWord.svg?jsx';
+import { useAuth } from '~/hooks/useAuth';
 
 type LoginFormKeys = keyof LoginForm;
 interface LoginFormFields {
@@ -35,31 +38,24 @@ const formFields: LoginFormFields[] = [
 ];
 
 export default component$(() => {
+    const auth = useAuth();
     const [loginForm, { Form, Field, FieldArray }] = useForm<LoginForm>({
         loader: useFormLoader(),
     });
 
     const error = useSignal('');
 
-    const handleSubmit = $<SubmitHandler<LoginForm>>(
-        async (values, event) => {
-            const response = await loginUser(values);
-            if (response.isError) {
-                error.value = response.error?.message ?? 'Error';
-                return
-            }
-            if (response.data) {
-                // setCookie(
-                //     'accessToken',
-                //     response.data.accessToken
-                // );
-            }
+    const handleSubmit = $<SubmitHandler<LoginForm>>(async (values) => {
+        const response = await auth.loginUser(values);
+
+        if (response.isError) {
+            error.value = response.error?.message ?? 'Error';
         }
-    );
+    });
 
     return (
         <>
-            <AuthBG class={styles.imgBG}/>
+            <AuthBG class={styles.imgBG} />
             <Form onSubmit$={handleSubmit}>
                 {formFields.map((fields) => (
                     <Field name={fields.fieldName} key={fields.fieldName}>
@@ -69,7 +65,9 @@ export default component$(() => {
                                     <FormText for={fields.fieldName}>
                                         {fields.label}
                                     </FormText>
-                                    <div class={styles.imgIcon}>{fields.icon}</div>
+                                    <div class={styles.imgIcon}>
+                                        {fields.icon}
+                                    </div>
                                     <FormInput
                                         {...props}
                                         type={fields.type}
