@@ -5,6 +5,7 @@ import {
     JSXNode,
     useSignal,
 } from '@builder.io/qwik';
+import { Link} from '@builder.io/qwik-city';
 import { SubmitHandler, useForm } from '@modular-forms/qwik';
 import { LoginForm, useFormLoader } from '~/routes/auth/login';
 import styles from './LoginForm.module.scss';
@@ -14,6 +15,12 @@ import AuthBG from '../../assets/auth-bg.jpg?jsx';
 import EmailIcon from '../../assets/icon/email.svg?jsx';
 import PassWordIcon from '../../assets/icon/PassWord.svg?jsx';
 import { useAuth } from '~/hooks/useAuth';
+import Title from '../Title';
+import Logo from '../../assets/logo.png?jsx'
+
+
+
+
 
 type LoginFormKeys = keyof LoginForm;
 interface LoginFormFields {
@@ -53,34 +60,45 @@ export default component$(() => {
         }
     });
 
+ 
     return (
         <>
             <AuthBG class={styles.imgBG} />
-            <Form onSubmit$={handleSubmit}>
-                {formFields.map((fields) => (
-                    <Field name={fields.fieldName} key={fields.fieldName}>
-                        {(field, props) => {
-                            return (
-                                <div class={styles.wrapper}>
-                                    <FormText for={fields.fieldName}>
-                                        {fields.label}
-                                    </FormText>
-                                    <div class={styles.imgIcon}>
-                                        {fields.icon}
-                                    </div>
-                                    <FormInput
-                                        {...props}
-                                        type={fields.type}
-                                        value={field.value}
-                                    />
-                                </div>
-                            );
-                        }}
-                    </Field>
-                ))}
-                <button type="submit">Увійти</button>
-                {error.value && <div>{error.value}</div>}
-            </Form>
+            <div class={styles.content}>
+                <Logo class={styles.imgLogo}/>
+                <div class={styles.allForm}>
+                    <div class={styles.blockTitle}>
+                        <Title>Вхід</Title>
+                        <p class={styles.titleText}>Увійдіть в ваш акаунт</p>
+                    </div>
+                    <Form onSubmit$={handleSubmit}>
+                        {formFields.map((fields) => (
+                            <Field name={fields.fieldName} key={fields.fieldName}>
+                                {(field, props) => {
+                                    return (
+                                        <div class={styles.form}>
+                                            <FormText for={fields.fieldName}>
+                                                {fields.label}
+                                            </FormText>
+                                            <div class={styles.imgIcon}>
+                                                {fields.icon}
+                                            </div>
+                                            <FormInput
+                                                {...props}
+                                                type={fields.type}
+                                                value={field.value}
+                                            />
+                                        </div>
+                                    );
+                                }}
+                            </Field>
+                        ))}
+                        <button type="submit" class={styles.loginButton}>Увійти</button>
+                        {error.value && <div>{error.value}</div>}
+                    </Form>
+                </div>
+                <p class={styles.lastText}>Ще не маєте акаунту? <Link href='/auth/register' class={styles.link}>Зареєструватись</Link></p>
+            </div>
         </>
     );
 });
