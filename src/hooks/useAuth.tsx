@@ -1,5 +1,5 @@
 import { useNavigate } from '@builder.io/qwik-city';
-import { setCookie } from '~/helpers/setCookie';
+import { cookies } from '~/helpers/cookies';
 import { $ } from '@builder.io/qwik';
 import { api } from '~/api';
 import { RequestLoginData } from '~/api/dto/auth';
@@ -9,7 +9,7 @@ export const useAuth = () => {
 
     const authorizeUser = $((token: string) => {
         localStorage.setItem('accessToken', token);
-        setCookie('accessToken', token);
+        cookies('accessToken', token);
         navigate('/');
     });
 

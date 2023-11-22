@@ -3,7 +3,6 @@ import type { DocumentHead } from '@builder.io/qwik-city';
 import { routeLoader$ } from '@builder.io/qwik-city';
 import { type InitialValues } from '@modular-forms/qwik';
 import LoginForm from '~/components/LoginForm/LoginForm';
-import Title from '~/components/Title';
 
 export type LoginForm = {
     email: string;
@@ -18,7 +17,6 @@ export const useFormLoader = routeLoader$<InitialValues<LoginForm>>(() => ({
 export default component$(() => {
     return (
         <>
-            <Title>Login</Title>
             <LoginForm />
         </>
     );

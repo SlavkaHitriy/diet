@@ -1,6 +1,6 @@
 import { CookieOptions } from '@builder.io/qwik-city';
 
-export function setCookie(
+export function cookies(
     name: string,
     value: string,
     options: CookieOptions = {},
@@ -30,4 +30,16 @@ export function setCookie(
     }
 
     document.cookie = updatedCookie;
+}
+
+export function getCookie(name: string) {
+    if (typeof window === 'undefined') return;
+    const matches = document.cookie.match(
+        new RegExp(
+            '(?:^|; )' +
+                name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') +
+                '=([^;]*)',
+        ),
+    );
+    return matches ? decodeURIComponent(matches[1]) : undefined;
 }

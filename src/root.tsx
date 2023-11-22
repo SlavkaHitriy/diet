@@ -17,7 +17,6 @@ export default component$(() => {
                 <RouterHead />
             </head>
             <body lang="en">
-                <Header />
                 <RouterOutlet />
                 <ServiceWorkerRegister />
             </body>

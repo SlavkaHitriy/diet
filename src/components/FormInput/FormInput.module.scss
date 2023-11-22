@@ -1,11 +1,33 @@
 @import '/src/styles/variables.scss';
 
+.inputWrapper {
+}
 
-.input{
+.inputIcon {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 16px;
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.input {
     background-color: $grey100;
     border: 1px solid $grey300;
     border-radius: 4px;
     width: 360px;
     height: 42px;
-    padding: 14px 16px 14px 42px;
+    padding: 14px 16px 14px 48px;
+
+    &:focus {
+        border-color: $primary;
+    }
+}
+
+.inputBox {
+    position: relative;
 }

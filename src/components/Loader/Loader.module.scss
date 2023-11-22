@@ -1,0 +1,27 @@
+@import '/src/styles/variables.scss';
+
+.loader {
+    border: 3px solid $secondary;
+    border-radius: 50%;
+    position: relative;
+    animation: rotation 1s linear infinite;
+
+    span {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        border-radius: 50%;
+        border: 3px solid transparent;
+        border-bottom-color: $primary;
+    }
+}
+
+@keyframes rotation {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
