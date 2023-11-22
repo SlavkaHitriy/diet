@@ -1,0 +1,21 @@
+@import '/src/styles/variables.scss';
+
+.button {
+    display: block;
+    width: 100%;
+    padding: 12px 56px;
+    border-radius: 4px;
+    border: none;
+    background: $primary;
+    color: white;
+    cursor: pointer;
+    transition: background-color .15s;
+
+    &:hover {
+        background: #9281f3;
+    }
+
+    &:active {
+        background: $primary;
+    }
+}

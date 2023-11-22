@@ -8,7 +8,6 @@ import { RouterHead } from './components/router-head/router-head';
 import { Header } from './components/Header/Header';
 import './styles/global.scss';
 
-
 export default component$(() => {
     return (
         <QwikCityProvider>
@@ -18,7 +17,6 @@ export default component$(() => {
                 <RouterHead />
             </head>
             <body lang="en">
-                <Header />
                 <RouterOutlet />
                 <ServiceWorkerRegister />
             </body>
