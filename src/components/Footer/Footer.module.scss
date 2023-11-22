@@ -1,0 +1,31 @@
+@import '/src/styles/variables.scss';
+
+.footer {
+    background-color: $white;
+    border-top: 1px solid $grey100;
+    padding: 8px 0;
+    font-family: $fontPoppins;
+    margin-top: 24px;
+}
+
+.footerInner {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 24px;
+}
+
+.footerLogo {
+    width: 30px;
+    height: 36px;
+}
+
+.footerLink {
+    padding: 6px 10px;
+    font-size: 14px;
+    transition: color .15s;
+
+    &:hover {
+        color: $primary;
+    }
+}

@@ -151,10 +151,9 @@ export default component$(() => {
 
             localStorage.setItem(
                 'diet',
-                responseDiet.data.choices[0].message.content.replaceAll(
-                    '\n\n',
-                    '<br /> <br />',
-                ),
+                responseDiet.data.choices[0].message.content
+                    .replaceAll('\n\n', '<br /> <br />')
+                    .replaceAll('/\\*\\*(.*?)\\*\\*/g', '<h4>$1</h4>'),
             );
 
             navigate('/my-diets');
