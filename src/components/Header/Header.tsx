@@ -1,10 +1,5 @@
-import { component$ } from "@builder.io/qwik";
-
+import { component$ } from '@builder.io/qwik';
 
 export const Header = component$(() => {
-    return(
-    <div>
-        HEADER
-    </div>
-    )
+    return <div>HEADER</div>;
 });

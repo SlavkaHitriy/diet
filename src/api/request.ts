@@ -4,7 +4,7 @@ import { AxiosError } from 'axios';
 interface RequestResponse<T> {
     data?: T;
     isError: boolean;
-    error?: AxiosError;
+    error?: string;
 }
 
 export const request = async <T, U = {}>(
@@ -21,8 +21,11 @@ export const request = async <T, U = {}>(
 
         return { data: response.data, isError: false };
     } catch (error) {
-        const axiosError = error as AxiosError;
+        const axiosError = error as AxiosError<{ title: string }>;
 
-        return { error: axiosError, isError: true };
+        return {
+            error: axiosError.response?.data?.title || axiosError.message,
+            isError: true,
+        };
     }
 };

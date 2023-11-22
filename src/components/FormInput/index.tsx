@@ -5,18 +5,31 @@ import FormText from '~/components/FormText';
 type FormInputProps = QwikIntrinsicElements['input'] & {
     name: string;
     label: string;
+    withIcon?: boolean;
 };
 
-export default component$<any, FormInputProps>(({ name, label, ...props }) => {
-    return (
-        <div class={styles.inputWrapper}>
-            <FormText for={name}>{label}</FormText>
-            <div class={styles.inputBox}>
-                <div class={styles.inputIcon}>
-                    <Slot />
+export default component$<any, FormInputProps & { helperText?: string }>(
+    ({ name, label, withIcon, helperText, ...props }) => {
+        return (
+            <div class={styles.inputWrapper}>
+                <FormText for={name}>{label}</FormText>
+                <div class={styles.inputBox}>
+                    {withIcon && (
+                        <div class={styles.inputIcon}>
+                            <Slot />
+                        </div>
+                    )}
+                    {helperText && (
+                        <div class={styles.inputHelperText}>{helperText}</div>
+                    )}
+                    <input
+                        class={`${styles.input} ${
+                            withIcon && styles.inputWithIcon
+                        } ${helperText && styles.inputWithHelperText}`}
+                        {...props}
+                    />
                 </div>
-                <input class={styles.input} {...props} />
             </div>
-        </div>
-    );
-});
+        );
+    },
+);

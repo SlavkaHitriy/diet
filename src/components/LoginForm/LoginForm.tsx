@@ -50,7 +50,7 @@ export default component$(() => {
         isLoading.value = false;
 
         if (response.isError) {
-            error.value = response.error?.message ?? 'Error';
+            error.value = response.error ?? 'Error';
         }
     });
 
@@ -83,7 +83,9 @@ export default component$(() => {
                     <Button type="submit" class={styles.formButton}>
                         Увійти
                     </Button>
-                    {error.value && <div>{error.value}</div>}
+                    {error.value && (
+                        <div class={styles.formError}>{error.value}</div>
+                    )}
                 </Form>
             </div>
             <p class={styles.lastText}>

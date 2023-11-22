@@ -1,0 +1,84 @@
+@import '/src/styles/variables.scss';
+
+.mainForm {
+
+}
+
+.subtitle {
+    font-size: 20px;
+    text-align: center;
+    margin-bottom: 24px;
+    font-weight: 400;
+}
+
+.loader {
+    margin: 0 auto 24px;
+}
+
+.mainFormField {
+
+}
+
+.mainFormFieldInner {
+    display: flex;
+    gap: 24px;
+}
+
+.mainFormFieldLabel {
+    margin-bottom: 16px;
+    font-size: 14px;
+}
+
+.mainFormInner {
+    max-width: 580px;
+    width: 100%;
+    margin: 0 auto;
+    background-color: $white;
+    padding: 24px;
+    border-radius: 12px;
+    box-shadow: $defaultShadow;
+}
+
+.formWrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.mainFormError {
+    color: $red500;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+
+    &::before {
+        content: '';
+        display: block;
+        width: 16px;
+        height: 16px;
+        background-image: url('/src/assets/icons/error.svg');
+        background-repeat: no-repeat;
+        background-size: contain;
+    }
+}
+
+.title {
+    font-size: 48px;
+    font-family: $fontPoppins;
+    text-align: center;
+    background: var(--gradient, linear-gradient(204deg, #BDB4F1 25.65%, #D8B9E3 57.97%, #F1B1BB 89.53%));
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    letter-spacing: 2px;
+    margin-bottom: 8px;
+}
+
+.description {
+    font-size: 14px;
+    text-align: center;
+    margin-bottom: 24px;
+    color: $grey700;
+}
