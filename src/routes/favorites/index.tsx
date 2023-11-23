@@ -1,11 +1,11 @@
 import { component$ } from '@builder.io/qwik';
 import type { DocumentHead } from '@builder.io/qwik-city';
-import DietContent from '~/components/DietContent/DietContent';
+import FavoriteContent from '~/components/FavoriteContent/FavoriteContent';
 
 export default component$(() => {
-    return <DietContent />;
+    return <FavoriteContent />;
 });
 
 export const head: DocumentHead = {
-    title: 'Моя дієта',
+    title: 'Обране',
 };

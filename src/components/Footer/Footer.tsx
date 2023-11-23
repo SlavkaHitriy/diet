@@ -12,11 +12,11 @@ export default component$(() => {
                         Про нас
                     </Link>
                     <Link class={styles.footerLink} href={'/my-diets'}>
-                        Мої дієти
+                        Моя дієта
                     </Link>
                     <Logo class={styles.footerLogo} />
                     <Link class={styles.footerLink} href={'/my-trainings'}>
-                        Мої тренування
+                        Моє тренування
                     </Link>
                     <Link class={styles.footerLink} href={'/favorites'}>
                         Обране

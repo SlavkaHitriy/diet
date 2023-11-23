@@ -1,5 +1,5 @@
 import { useNavigate } from '@builder.io/qwik-city';
-import { cookies } from '~/helpers/cookies';
+import { setCookie } from '~/helpers/cookies';
 import { $ } from '@builder.io/qwik';
 import { api } from '~/api';
 import { RequestLoginData } from '~/api/dto/auth';
@@ -9,7 +9,7 @@ export const useAuth = () => {
 
     const authorizeUser = $((token: string) => {
         localStorage.setItem('accessToken', token);
-        cookies('accessToken', token);
+        setCookie('accessToken', token);
         navigate('/');
     });
 
@@ -18,6 +18,7 @@ export const useAuth = () => {
 
         if (!response.isError && response.data) {
             localStorage.setItem('userId', response.data.userId);
+            localStorage.setItem('refreshToken', response.data.refreshToken);
             authorizeUser(response.data.accessToken);
         }
 

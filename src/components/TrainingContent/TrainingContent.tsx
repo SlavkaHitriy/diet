@@ -5,7 +5,7 @@ import {
     useStore,
     useVisibleTask$,
 } from '@builder.io/qwik';
-import styles from './DietContent.module.scss';
+import styles from './TrainingContent.module.scss';
 import { api } from '~/api';
 import Title from '~/components/Title';
 
@@ -14,7 +14,7 @@ interface UseStoreData {
 }
 
 interface UserData {
-    diet?: string;
+    training?: string;
 }
 
 export default component$<unknown, QwikIntrinsicElements['label']>(() => {
@@ -22,20 +22,22 @@ export default component$<unknown, QwikIntrinsicElements['label']>(() => {
         data: null,
     });
     const isLiked = useSignal(false);
-    const dietContent = useSignal('');
+    const trainingContent = useSignal('');
 
     useVisibleTask$(() => {
-        dietContent.value = localStorage.getItem('diet') ?? '';
+        trainingContent.value = localStorage.getItem('training') ?? '';
     });
 
     useVisibleTask$(async ({ track }) => {
         track(() => isLiked.value);
 
         if (isLiked.value) {
-            await api.saveDiet({
+            const response = await api.saveTraining({
                 userId: localStorage.getItem('userId') || '',
-                diet: dietContent.value,
+                trainingProgramm: trainingContent.value,
             });
+
+            console.log(response);
         }
     });
 
@@ -52,7 +54,7 @@ export default component$<unknown, QwikIntrinsicElements['label']>(() => {
 
     return (
         <div class={'container ' + styles.dietWrapper}>
-            <Title>Моя дієта</Title>
+            <Title>Моє тренування</Title>
             {isLiked.value ? (
                 <svg
                     class={`${styles.dietIconActive} ${styles.dietIcon}`}
@@ -97,7 +99,7 @@ export default component$<unknown, QwikIntrinsicElements['label']>(() => {
             <div
                 class={styles.diet}
                 dangerouslySetInnerHTML={
-                    dietContent.value || userData.data?.diet
+                    trainingContent.value || userData.data?.training
                 }
             />
         </div>

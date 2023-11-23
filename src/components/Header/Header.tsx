@@ -10,11 +10,11 @@ const menu = [
         url: '/about',
     },
     {
-        title: 'Мої дієти',
+        title: 'Моя дієта',
         url: '/my-diets',
     },
     {
-        title: 'Мої тренування',
+        title: 'Моє тренування',
         url: '/my-trainings',
     },
     {
@@ -45,12 +45,12 @@ export const Header = component$(() => {
                             ))}
                         </ul>
                     </nav>
-                    <div class={styles.profile}>
+                    <Link href={'/profile'} class={styles.profile}>
                         <div class={styles.profileText}>В профіль</div>
                         <div class={styles.profileAvatar}>
                             <ProfileAvatar />
                         </div>
-                    </div>
+                    </Link>
                 </div>
             </div>
         </header>

@@ -5,15 +5,11 @@ import FormInput from '../FormInput';
 import Button from '~/components/Button';
 import Loader from '~/components/Loader';
 import { api } from '~/api';
-import {
-    AdditionalForm,
-    PersonalForm,
-    useAdditionalFormLoader,
-    useFormLoader,
-} from '~/routes';
+import { AdditionalForm, PersonalForm } from '~/routes';
 import RadioButton from '~/components/RadioButton/RadioButton';
 import { addAdditionalData } from '~/api/diet/addAdditionalData';
 import { useNavigate } from '@builder.io/qwik-city';
+import { useAdditionalFormLoader, useFormLoader } from '~/routes/training';
 
 type PersonalFormKeys = keyof PersonalForm;
 type AdditionalFormKeys = keyof AdditionalForm;
@@ -140,7 +136,7 @@ export default component$(() => {
                 return (error.value = response.error ?? 'Error');
             }
 
-            const responseDiet = await api.generateDiet(
+            const responseDiet = await api.generateTraining(
                 {},
                 { userId: localStorage.getItem('userId') || '' },
             );
@@ -151,13 +147,13 @@ export default component$(() => {
             }
 
             localStorage.setItem(
-                'diet',
+                'training',
                 responseDiet.data.choices[0].message.content
                     .replaceAll('\n\n', '<br /> <br />')
                     .replaceAll('/\\*\\*(.*?)\\*\\*/g', '<h4>$1</h4>'),
             );
 
-            navigate('/my-diets');
+            navigate('/my-trainings');
 
             isLoading.value = false;
         },
@@ -215,9 +211,9 @@ export default component$(() => {
 
     return (
         <div class={styles.mainForm}>
-            <h1 class={styles.title}>Створіть вашу дієту</h1>
+            <h1 class={styles.title}>Створіть ваше тренування</h1>
             <div class={styles.description}>
-                Отримайте ваш план дієти згідно дієтолога ChatGPT
+                Отримайте ваш план тренувань згідно тренера ChatGPT
             </div>
             {isPersonalFormCompleted.value ? (
                 <div class={styles.mainFormInner}>
@@ -253,7 +249,7 @@ export default component$(() => {
                             </div>
                         )}
                         <Button type="submit" class={styles.formButton}>
-                            Створити дієту
+                            Створити план тренування
                         </Button>
                     </AdditionalForm>
                 </div>

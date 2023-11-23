@@ -1,0 +1,24 @@
+@import '/src/styles/variables.scss';
+
+.favorite {
+    padding-bottom: 60px;
+}
+
+.favoriteInner {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    gap: 40px;
+}
+
+.favoriteContent {
+    line-height: 1.6;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.favoriteLoader {
+    margin: 0 auto;
+}
