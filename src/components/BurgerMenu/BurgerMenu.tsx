@@ -1,10 +1,7 @@
-import { component$, useSignal, $ } from '@builder.io/qwik';
-import styles from './Header.module.scss';
+import { component$, useSignal } from '@builder.io/qwik';
+import styles from './BurgerMenu.module.scss';
 import { Link } from '@builder.io/qwik-city';
 import Logo from '~/assets/icons/logo.svg?jsx';
-import ProfileAvatar from '~/assets/avatar.png?jsx';
-import BurgerMenu from '../BurgerMenu/BurgerMenu'
-
 
 const menu = [
     {
@@ -25,25 +22,20 @@ const menu = [
     },
 ];
 
-export const Header = component$(() => {
-    const showMenu = useSignal (false);
+interface ItemProps {
+    active: boolean;
+    isActive: () => void;
+}
 
-    const handleClose = $(() => {
-        showMenu.value = !showMenu.value;
-    });
 
+export default component$<unknown, ItemProps>((props) => {
     return (
-        <header class={styles.header}>
-            <div class={'container'}>
-                <div class={styles.headerInner}>
-                    <Link class={styles.headerLogo} href="/">
+        <div class={props.active ? styles.active : styles.burgerMenu}>
+            <div class={styles.burgerClose} onClick$={props.isActive}></div>
+                <div class={styles.burgerInner}>
+                    <Link class={styles.burgerLogo} href="/">
                         <Logo />
                     </Link>
-
-                    <BurgerMenu active={showMenu.value} isActive={handleClose}/>
-                    <div class={styles.burgerLines} onClick$={() => showMenu.value = !showMenu.value}>
-                        <span />
-                    </div>
                     <nav class={styles.menu}>
                         <ul class={styles.menuList}>
                             {menu.map((item, idx) => (
@@ -58,14 +50,8 @@ export const Header = component$(() => {
                             ))}
                         </ul>
                     </nav>
-                    <Link href={'/profile'} class={styles.profile}>
-                        <div class={styles.profileText}>В профіль</div>
-                        <div class={styles.profileAvatar}>
-                            <ProfileAvatar />
-                        </div>
-                    </Link>
                 </div>
-            </div>
-        </header>
+        </div>
     );
 });
+
