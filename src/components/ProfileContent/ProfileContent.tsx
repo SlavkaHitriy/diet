@@ -1,9 +1,4 @@
-import {
-    component$,
-    useStore,
-    useTask$,
-    useVisibleTask$,
-} from '@builder.io/qwik';
+import { component$, useStore, useVisibleTask$ } from '@builder.io/qwik';
 import styles from './ProfileContent.module.scss';
 import { api } from '~/api';
 import Loader from '~/components/Loader';

@@ -1,5 +1,4 @@
-import { $, Slot, component$, useSignal } from '@builder.io/qwik';
-import { SubmitHandler, useForm } from '@modular-forms/qwik';
+import { component$, Slot } from '@builder.io/qwik';
 import styles from './Title.module.scss';
 
 export default component$(() => {

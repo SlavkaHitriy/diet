@@ -64,6 +64,7 @@ export default component$(() => {
             isLoading.value = false;
 
             if (response.isError) {
+                // @ts-ignore
                 error.value = response.error?.message ?? 'Error';
                 return;
             }
@@ -74,6 +75,7 @@ export default component$(() => {
             });
 
             if (loginResponse.isError) {
+                // @ts-ignore
                 error.value = loginResponse.error?.message ?? 'Error';
                 return;
             }
