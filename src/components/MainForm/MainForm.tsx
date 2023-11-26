@@ -12,7 +12,6 @@ import {
     useFormLoader,
 } from '~/routes';
 import RadioButton from '~/components/RadioButton/RadioButton';
-import { addAdditionalData } from '~/api/diet/addAdditionalData';
 import { Link, useNavigate } from '@builder.io/qwik-city';
 
 type PersonalFormKeys = keyof PersonalForm;

@@ -32,7 +32,7 @@ export default component$<unknown, QwikIntrinsicElements['label']>(() => {
         track(() => isLiked.value);
 
         if (isLiked.value) {
-            const response = await api.saveTraining({
+            await api.saveTraining({
                 userId: localStorage.getItem('userId') || '',
                 trainingProgramm: trainingContent.value,
             });

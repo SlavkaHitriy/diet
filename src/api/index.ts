@@ -48,7 +48,7 @@ instance.interceptors.response.use(
         return config;
     },
     async (error) => {
-        const originalRequest = error.config;
+        // const originalRequest = error.config;
 
         if (error.response.status === 401 && !isRefreshing) {
             try {
@@ -60,7 +60,7 @@ instance.interceptors.response.use(
                 localStorage.removeItem('training');
                 window.location.href = '/';
 
-                // isRefreshing = true;
+                isRefreshing = true;
                 // const response = await api.refreshToken({
                 //     userId: localStorage.getItem('userId'),
                 //     refreshToken: localStorage.getItem('refreshToken'),

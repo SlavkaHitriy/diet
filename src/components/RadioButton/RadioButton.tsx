@@ -1,4 +1,4 @@
-import { component$, QwikIntrinsicElements, Slot } from '@builder.io/qwik';
+import { component$, QwikIntrinsicElements } from '@builder.io/qwik';
 import styles from './RadioButton.module.scss';
 
 export default component$<

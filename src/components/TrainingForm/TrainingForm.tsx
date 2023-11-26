@@ -7,7 +7,6 @@ import Loader from '~/components/Loader';
 import { api } from '~/api';
 import { AdditionalForm, PersonalForm } from '~/routes';
 import RadioButton from '~/components/RadioButton/RadioButton';
-import { addAdditionalData } from '~/api/diet/addAdditionalData';
 import { Link, useNavigate } from '@builder.io/qwik-city';
 import { useAdditionalFormLoader, useFormLoader } from '~/routes/training';
 
