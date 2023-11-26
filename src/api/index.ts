@@ -57,6 +57,7 @@ instance.interceptors.response.use(
                 localStorage.removeItem('refreshToken');
                 localStorage.removeItem('userId');
                 localStorage.removeItem('diet');
+                localStorage.removeItem('training');
                 window.location.href = '/';
 
                 // isRefreshing = true;
@@ -73,6 +74,7 @@ instance.interceptors.response.use(
                 localStorage.removeItem('refreshToken');
                 localStorage.removeItem('userId');
                 localStorage.removeItem('diet');
+                localStorage.removeItem('training');
                 window.location.href = '/';
             }
         }

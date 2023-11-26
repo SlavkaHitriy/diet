@@ -3,12 +3,11 @@ import styles from './Header.module.scss';
 import { Link } from '@builder.io/qwik-city';
 import Logo from '~/assets/icons/logo.svg?jsx';
 import ProfileAvatar from '~/assets/avatar.png?jsx';
-import BurgerMenu from '../BurgerMenu/BurgerMenu'
-
+import BurgerMenu from '../BurgerMenu/BurgerMenu';
 
 const menu = [
     {
-        title: 'Актуальність',
+        title: 'Загальна інформація',
         url: '/about',
     },
     {
@@ -26,7 +25,7 @@ const menu = [
 ];
 
 export const Header = component$(() => {
-    const showMenu = useSignal (false);
+    const showMenu = useSignal(false);
 
     const handleClose = $(() => {
         showMenu.value = !showMenu.value;
@@ -40,8 +39,14 @@ export const Header = component$(() => {
                         <Logo />
                     </Link>
 
-                    <BurgerMenu active={showMenu.value} isActive={handleClose}/>
-                    <div class={styles.burgerLines} onClick$={() => showMenu.value = !showMenu.value}>
+                    <BurgerMenu
+                        active={showMenu.value}
+                        isActive={handleClose}
+                    />
+                    <div
+                        class={styles.burgerLines}
+                        onClick$={() => (showMenu.value = !showMenu.value)}
+                    >
                         <span />
                     </div>
                     <nav class={styles.menu}>

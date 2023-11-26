@@ -23,5 +23,5 @@ export default component$(() => {
 });
 
 export const head: DocumentHead = {
-    title: 'Welcome to register',
+    title: 'Реєстрація',
 };

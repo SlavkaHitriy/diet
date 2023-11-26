@@ -9,7 +9,7 @@ export default component$(() => {
             <div class="container">
                 <div class={styles.footerInner}>
                     <Link class={styles.footerLink} href={'/about'}>
-                        Про нас
+                        Загальна інформація
                     </Link>
                     <Link class={styles.footerLink} href={'/my-diets'}>
                         Моя дієта

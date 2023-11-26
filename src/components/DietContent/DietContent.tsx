@@ -53,7 +53,9 @@ export default component$<unknown, QwikIntrinsicElements['label']>(() => {
     return (
         <div class={'container ' + styles.dietWrapper}>
             <Title>Моя дієта</Title>
-            {isLiked.value ? (
+            {!dietContent.value && !userData.data?.diet ? (
+                'Немає згенерованої дієти'
+            ) : isLiked.value ? (
                 <svg
                     class={`${styles.dietIconActive} ${styles.dietIcon}`}
                     onClick$={() => (isLiked.value = !isLiked.value)}

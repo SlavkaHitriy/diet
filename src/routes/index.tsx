@@ -47,7 +47,7 @@ export default component$(() => {
 });
 
 export const head: DocumentHead = {
-    title: 'Welcome to Qwik',
+    title: 'Створення дієти',
     meta: [
         {
             name: 'description',
