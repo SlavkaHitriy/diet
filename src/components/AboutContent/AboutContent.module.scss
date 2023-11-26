@@ -1,0 +1,47 @@
+@import '/src/styles/variables.scss';
+
+.diet {
+    line-height: 1.6;
+    max-width: 800px;
+    margin: 0 auto;
+    padding-bottom: 60px;
+}
+
+.dietWrapper {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    max-width: 800px;
+    line-height: 1.6;
+}
+
+.dietIcon {
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+    position: absolute;
+    right: 0;
+    top: 0;
+
+    path {
+        fill: $grey700;
+    }
+}
+
+.dietIconActive {
+    path {
+        fill: $primary;
+    }
+}
+
+.subTitle{
+    font-weight: 700;
+    font-size: 28px;
+    margin: 20px 5px 20px 5px;
+}
+
+.text{
+    text-align: left;
+    margin: 5px 5px 5px 5px;
+}

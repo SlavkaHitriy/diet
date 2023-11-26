@@ -1,0 +1,36 @@
+@import '/src/styles/variables.scss';
+
+.diet {
+    line-height: 1.6;
+    max-width: 800px;
+    margin: 0 auto;
+    padding-bottom: 60px;
+}
+
+.dietWrapper {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    justify-content: center;
+    max-width: 800px;
+}
+
+.dietIcon {
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+    position: absolute;
+    right: 0;
+    top: 0;
+
+    path {
+        fill: $grey700;
+    }
+}
+
+.dietIconActive {
+    path {
+        fill: $primary;
+    }
+}

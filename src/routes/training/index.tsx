@@ -3,6 +3,7 @@ import type { DocumentHead } from '@builder.io/qwik-city';
 import MainForm from '~/components/MainForm/MainForm';
 import { routeLoader$ } from '@builder.io/qwik-city';
 import { InitialValues } from '@modular-forms/qwik';
+import TrainingForm from '~/components/TrainingForm/TrainingForm';
 
 export type PersonalForm = {
     age: number | null;
@@ -41,13 +42,13 @@ export const useAdditionalFormLoader = routeLoader$<
 export default component$(() => {
     return (
         <div class={'container'}>
-            <MainForm />
+            <TrainingForm />
         </div>
     );
 });
 
 export const head: DocumentHead = {
-    title: 'Створення дієти',
+    title: 'Створення тренування',
     meta: [
         {
             name: 'description',
