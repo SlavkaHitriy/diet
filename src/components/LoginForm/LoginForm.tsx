@@ -5,7 +5,7 @@ import { LoginForm, useFormLoader } from '~/routes/auth/login';
 import styles from './LoginForm.module.scss';
 import FormInput from '../FormInput';
 import EmailIcon from '~/assets/icons/email.svg?jsx';
-import PassWordIcon from '~/assets/icons/PassWord.svg?jsx';
+import PassWordIcon from '~/assets/icons/password.svg?jsx';
 import { useAuth } from '~/hooks/useAuth';
 import Title from '../Title';
 import Button from '~/components/Button';
