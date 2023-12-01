@@ -8,7 +8,7 @@ import BurgerMenu from '../BurgerMenu/BurgerMenu'
 
 const menu = [
     {
-        title: 'Актуальність',
+        title: 'Загальне',
         url: '/about',
     },
     {
@@ -39,7 +39,6 @@ export const Header = component$(() => {
                     <Link class={styles.headerLogo} href="/">
                         <Logo />
                     </Link>
-
                     <BurgerMenu active={showMenu.value} isActive={handleClose}/>
                     <div class={styles.burgerLines} onClick$={() => showMenu.value = !showMenu.value}>
                         <span />
