@@ -1,4 +1,4 @@
-import { component$, useSignal } from '@builder.io/qwik';
+import { component$ } from '@builder.io/qwik';
 import styles from './BurgerMenu.module.scss';
 import { Link } from '@builder.io/qwik-city';
 import Logo from '~/assets/icons/logo.svg?jsx';

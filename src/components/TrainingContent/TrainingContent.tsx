@@ -32,12 +32,10 @@ export default component$<unknown, QwikIntrinsicElements['label']>(() => {
         track(() => isLiked.value);
 
         if (isLiked.value) {
-            const response = await api.saveTraining({
+            await api.saveTraining({
                 userId: localStorage.getItem('userId') || '',
                 trainingProgramm: trainingContent.value,
             });
-
-            console.log(response);
         }
     });
 
@@ -55,7 +53,9 @@ export default component$<unknown, QwikIntrinsicElements['label']>(() => {
     return (
         <div class={'container ' + styles.dietWrapper}>
             <Title>Моє тренування</Title>
-            {isLiked.value ? (
+            {!trainingContent.value && !userData.data?.training ? (
+                'Немає згенерованого тренування'
+            ) : isLiked.value ? (
                 <svg
                     class={`${styles.dietIconActive} ${styles.dietIcon}`}
                     onClick$={() => (isLiked.value = !isLiked.value)}

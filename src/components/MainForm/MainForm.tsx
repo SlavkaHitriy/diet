@@ -12,8 +12,7 @@ import {
     useFormLoader,
 } from '~/routes';
 import RadioButton from '~/components/RadioButton/RadioButton';
-import { addAdditionalData } from '~/api/diet/addAdditionalData';
-import { useNavigate } from '@builder.io/qwik-city';
+import { Link, useNavigate } from '@builder.io/qwik-city';
 
 type PersonalFormKeys = keyof PersonalForm;
 type AdditionalFormKeys = keyof AdditionalForm;
@@ -217,7 +216,8 @@ export default component$(() => {
         <div class={styles.mainForm}>
             <h1 class={styles.title}>Створіть вашу дієту</h1>
             <div class={styles.description}>
-                Отримайте ваш план дієти згідно дієтолога ChatGPT
+                Отримайте ваш план дієти згідно дієтолога ChatGPT, або{' '}
+                <Link href={'/training'}>створіть тренування</Link>
             </div>
             {isPersonalFormCompleted.value ? (
                 <div class={styles.mainFormInner}>

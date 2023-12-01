@@ -10,7 +10,7 @@ import Loader from '~/components/Loader';
 import FormInput from '~/components/FormInput';
 import { Link } from '@builder.io/qwik-city';
 import EmailIcon from '~/assets/icons/email.svg?jsx';
-import PassWordIcon from '~/assets/icons/PassWord.svg?jsx';
+import PassWordIcon from '~/assets/icons/password.svg?jsx';
 import PassWordRepeatIcon from '~/assets/icons/password-repeat.svg?jsx';
 import NameIcon from '~/assets/icons/name.svg?jsx';
 
@@ -64,6 +64,7 @@ export default component$(() => {
             isLoading.value = false;
 
             if (response.isError) {
+                // @ts-ignore
                 error.value = response.error?.message ?? 'Error';
                 return;
             }
@@ -74,6 +75,7 @@ export default component$(() => {
             });
 
             if (loginResponse.isError) {
+                // @ts-ignore
                 error.value = loginResponse.error?.message ?? 'Error';
                 return;
             }
