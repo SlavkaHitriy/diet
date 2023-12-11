@@ -7,7 +7,7 @@ import BurgerMenu from '../BurgerMenu/BurgerMenu';
 
 const menu = [
     {
-        title: 'Загальна інформація',
+        title: 'Загальне',
         url: '/about',
     },
     {
